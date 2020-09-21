@@ -1,5 +1,8 @@
 add_library(fitterresponsemap OBJECT
-  src/FitterResponseMap.cc)
+  src/FitterResponseMap.cc
+  )
+target_link_libraries(fitterresponsemap PUBLIC
+  Threads::Threads)
 
 target_include_directories(fitterresponsemap PUBLIC 
   $<BUILD_INTERFACE:${FRP_INCLUDE_DIR}>

@@ -2,8 +2,8 @@
 build_directory := build
 
 all:
-	cmake . -B$(build_directory)
-	cmake --build $(build_directory) -- $(MAKEFLAGS)
+	cmake . -B$(build_directory) -DCMAKE_INSTALL_PREFIX="./local"
+	cmake --build $(build_directory) --target install -- $(MAKEFLAGS)
 
 clean:
 	rm -rf $(build_directory)
