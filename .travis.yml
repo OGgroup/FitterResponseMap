@@ -7,8 +7,8 @@ services:
 before_install:
   - docker pull aitwatchman/ratpac:latest
   - docker run -itd --name build aitwatchman/ratpac
-  - docker exec build git clone https://github.com/OGgroup/FitterResponseMap.git /repo
+  - docker exec -u root build git clone https://github.com/OGgroup/FitterResponseMap.git /repo
 script:
-  - docker exec build cmake -H/repo -B/build
-  - docker exec build cmake --build build
-  - docker exec build cmake --build --target install
+  - docker exec -u root build /wmutils/local/bin/cmake -H/repo -B/build
+  - docker exec -u root build /wmutils/local/bin/cmake --build /build
+  - docker exec -u root build /wmutils/local/bin/cmake --build /build --target install
