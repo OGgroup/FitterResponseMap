@@ -23,5 +23,5 @@ for(auto event : event_list) {
 
 ---
 
-[travis-img]: https://travis.ci.org/OGgroup/FitterResponseMap.svg?branch-master
-[travis-url]: https://travis.ci.org/OGgroup/FitterResponseMap
+[travis-img]: https://travis-ci.org/OGgroup/FitterResponseMap.svg?branch-master
+[travis-url]: https://travis-ci.org/OGgroup/FitterResponseMap
