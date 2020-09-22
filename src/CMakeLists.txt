@@ -1,5 +1,6 @@
 add_library(fitterresponsemap OBJECT
   src/FitterResponseMap.cc
+  src/EnergyResponse.cc
   )
 target_link_libraries(fitterresponsemap PUBLIC
   Threads::Threads)
