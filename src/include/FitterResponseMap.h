@@ -5,7 +5,6 @@
 
 namespace frp
 {
-
   class FitterResponseMap
   {
     public:

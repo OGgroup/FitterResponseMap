@@ -1,7 +1,14 @@
 #include <FitterResponseMap.h>
+#include <EnergyResponse.h>
 #include <csv.h>
 #include <fstream>
 
+#ifndef DATA_DIRECTORY
+  #define DATA_DIRECTORY "./"
+#endif
+
+// Root functions
+#include <TF1.h>
 
 namespace frp
 {
@@ -36,5 +43,10 @@ namespace frp
   void ParseMapCSV(std::string mapname)
   {
 
+  }
+  double GetEnergy( double x, double y, double z,
+      double u, double v, double w, double energy )
+  {
+    return energy;
   }
 }

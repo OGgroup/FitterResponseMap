@@ -16,6 +16,8 @@ set(THREADS_PREFER_PTHREAD_FLAT ON)
 add_definitions( -DDATA_DIRECTORY="${CMAKE_INSTALL_PREFIX}/share/" )
 
 find_package(Threads REQUIRED)
+find_package(ROOT CONFIG REQUIRED COMPONENTS Minuit2)
+include(${ROOT_USE_FILE})
 
 set( FRP_BINARY_DIR ${PROJECT_BINARY_DIR}/bin CACHE PATH "Executables" )
 set( FRP_LIBRARY_DIR ${PROJECT_BINARY_DIR}/lib CACHE PATH "Libraries" )
