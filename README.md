@@ -1,6 +1,8 @@
 Fitter Response Map
 ===================
 
+[![][travis-img]][travis-url]
+
 Using an included set of MC, Fitter Response Map applies an additional
 smearing to given event coordinates based on a set of input parameters
 and response map files.
@@ -18,3 +20,8 @@ for(auto event : event_list) {
 ```
 
 ## Examples
+
+---
+
+[travis-img]: https://travis.ci.org/OGgroup/FitterResponseMap.svg?branch-master
+[travis-url]: https://travis.ci.org/OGgroup/FitterResponseMap
