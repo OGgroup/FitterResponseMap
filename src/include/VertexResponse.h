@@ -78,18 +78,18 @@ namespace frp
         for(unsigned i=0; i<dims; i++)
         {
           // Loop through bins
-          double value = _binmin[i];
-          double count = 0;
-          //printf("%f, %f, %f :: %f\n", _binmin[i], _binmax[i], _binwidth[i], _nextComp[i]);
-          while( value <= _binmax[i] )
+          double bwidth = _binwidth[i];
+          double value  = _binmin[i] - bwidth/2.;
+          double count  = -1;
+          while( value <= _binmax[i] + bwidth/2. )
           {
-            value = _binmin[i] + count*_binwidth[i];
+            value = _binmin[i] - bwidth/2. + count*bwidth;
             //printf("%i > %0.3f\n", value, i);
             if( _nextComp[i] <= value ) break;
             count += 1;
           }
-          _nextComp[i] = _binmin[i] + count*_binwidth[i];
-          if( _nextComp[i] > _binmax[i] ) _nextComp[i] = _binmax[i];
+          _nextComp[i] = count >= 0 ? _binmin[i] + count*bwidth : _binmax[i];
+          //if( _nextComp[i] > _binmax[i] ) _nextComp[i] = _binmax[i];
           //printf("New nv: %f\n", _nextComp[i]);
           _nextVector[i] = double_as_string(_nextComp[i]);
         }
