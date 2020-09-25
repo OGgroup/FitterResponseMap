@@ -1,5 +1,5 @@
-#ifndef __EnergyResponse__
-#define __EnergyResponse__
+#ifndef __VertexResponse__
+#define __VertexResponse__
 
 #include <map>
 #include <array>
@@ -12,29 +12,27 @@
 
 namespace frp
 {
-  class EnergyResponse
+  class VertexResponse
   {
     protected:
-      double minimum_energy;
-      double maximum_energy;
-      double resolution;
-      std::unique_ptr<TF1> function;
+      double resolution_x;
+      double resolution_y;
+      double resolution_z;
+      std::unique_ptr<TF1> function_x;
+      std::unique_ptr<TF1> function_y;
+      std::unique_ptr<TF1> function_z;
     public:
-      EnergyResponse(double, double, double);
-      ~EnergyResponse() {}
-
-      double GetRandomEnergy(double);
+      VertexResponse(double, double, double);
+      ~VertexResponse() {}
+      
+      std::array<double,3> GetRandomVertex(std::array<double, 3>);
   };
   // Energy Response Collection
   template<unsigned dims>
-  class EnergyResponseCollection
+  class VertexResponseCollection
   {
     protected:
-      //std::map< std::array<double, dims>, std::shared_ptr<EnergyResponse> > _map;
-      std::map< std::array<std::string, dims>, std::shared_ptr<EnergyResponse> > _map;
-      // Energy
-      double minimum_energy;
-      double maximum_energy;
+      std::map< std::array<std::string, dims>, std::shared_ptr<VertexResponse> > _map;
       // Temporary container
       std::array<std::string, dims> _nextVector;
       std::array<double, dims> _nextComp;
@@ -42,8 +40,7 @@ namespace frp
       std::array<double, dims> _binmax;
       std::array<double, dims> _binwidth;
     public:
-      EnergyResponseCollection(double minE, double maxE) :
-        minimum_energy(minE), maximum_energy(maxE) {}
+      VertexResponseCollection() {}
 
       std::string double_as_string(double x)
       {
@@ -55,27 +52,27 @@ namespace frp
       }
 
       template<class...Args>
-      void AddResponse(std::shared_ptr<EnergyResponse> erp, double a1, Args... args)
+      void AddResponse(std::shared_ptr<VertexResponse> vrp, double a1, Args... args)
       {
         _nextVector[dims-sizeof...(Args)-1] = double_as_string(a1);
         //printf("a1: %s\n", double_as_string(a1));
-        AddResponse(erp, args...);
+        AddResponse(vrp, args...);
       }
 
-      void AddResponse(std::shared_ptr<EnergyResponse> erp)
+      void AddResponse(std::shared_ptr<VertexResponse> vrp)
       {
-        _map.insert( std::pair< std::array<std::string, dims>, std::shared_ptr<EnergyResponse> >(_nextVector, erp) );
+        _map.insert( std::pair< std::array<std::string, dims>, std::shared_ptr<VertexResponse> >(_nextVector, vrp) );
         updateVariables();
       }
 
       template<class...Args>
-      double GetEnergy(double energy, double x, Args... args)
+      std::array<double, 3> GetVertex(std::array<double,3> vertex, double x, Args... args)
       {
         _nextComp[dims-sizeof...(Args)-1] = x;
-        return GetEnergy(energy, args...);
+        return GetVertex(vertex, args...);
       }
 
-      double GetEnergy(double energy)
+      std::array<double, 3> GetVertex(std::array<double, 3> vertex)
       {
         // Loop through dimensions
         for(unsigned i=0; i<dims; i++)
@@ -96,7 +93,7 @@ namespace frp
           //printf("New nv: %f\n", _nextComp[i]);
           _nextVector[i] = double_as_string(_nextComp[i]);
         }
-        return (_map.at(_nextVector))->GetRandomEnergy(energy);
+        return (_map.at(_nextVector))->GetRandomVertex(vertex);
       }
 
       void updateVariables()
