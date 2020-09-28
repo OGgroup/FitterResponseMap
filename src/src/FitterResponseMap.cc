@@ -46,8 +46,16 @@ namespace frp
     this->direction_z = w;
     this->energy      = energy;
     this->time        = time;
-
     // New energy
+    double rho  = sqrt(x*x+y*y);
+    double absz = abs(z);
+    this->energy = energyrc->GetEnergy( energy, energy, rho, absz );
+    // New vertex
+    std::array<double, 3> fitposition = vertexrc->GetVertex({x, y, z}, energy, rho, absz);
+    this->position_x = fitposition[0];
+    this->position_y = fitposition[1];
+    this->position_z = fitposition[2];
+    // New direction
   }
   void FitterResponseMap::WhatDo()
   {
@@ -70,14 +78,17 @@ namespace frp
   void FitterResponseMap::ParseMapCSV()
   {
     this->csvfile->read_header(io::ignore_extra_column, 
-        "energy", "rho", "z", "energy_resn", "px", "py", "pz");
+        "energy", "rho", "z", "emean", "eres", "px", "py", "pz");
     double e, r, z;
+    double emean, eres, px, py, pz;
     while( csvfile->read_row( e, r, z, 
-           energy, position_x, position_y, position_z ) )
+           emean, eres, px, py, pz ) )
     {
-      std::shared_ptr<EnergyResponse> ersp(new EnergyResponse(energy, -100.0, 100.0));
+      std::shared_ptr<EnergyResponse> ersp(
+          new EnergyResponse(e, emean, eres ));
       energyrc->AddResponse( ersp, e, r, z );
-      std::shared_ptr<VertexResponse> vrsp(new VertexResponse(position_x, position_y, position_z));
+      std::shared_ptr<VertexResponse> vrsp(
+          new VertexResponse(px, py, pz));
       vertexrc->AddResponse( vrsp, e, r, z );
     }
   }
@@ -90,9 +101,9 @@ namespace frp
        << this->radius << ".csv";
     this->filename = ss.str();
     // overwrite for now
-    this->filename = DATA_DIRECTORY "example.csv";
+    this->filename = DATA_DIRECTORY "stephane_example.csv";
     printf("Opening: %s\n", this->filename.c_str());
-    this->csvfile = std::unique_ptr< io::CSVReader<7> >(new io::CSVReader<7>(filename));
+    this->csvfile = std::unique_ptr< io::CSVReader<8> >(new io::CSVReader<8>(filename));
   }
   double GetEnergy( double x, double y, double z,
       double u, double v, double w, double energy )

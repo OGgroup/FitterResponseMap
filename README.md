@@ -21,6 +21,9 @@ for(auto event : event_list) {
 
 ## Examples
 
+## Todo
+- [ ] Remove a line from the csv to get an error and then try to repair.
+
 ---
 
 [travis-img]: https://travis-ci.org/OGgroup/FitterResponseMap.svg?branch-master

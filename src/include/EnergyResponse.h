@@ -17,6 +17,8 @@ namespace frp
     protected:
       double minimum_energy;
       double maximum_energy;
+      double conversion;
+      double mean;
       double resolution;
       std::unique_ptr<TF1> function;
     public:
@@ -30,7 +32,6 @@ namespace frp
   class EnergyResponseCollection
   {
     protected:
-      //std::map< std::array<double, dims>, std::shared_ptr<EnergyResponse> > _map;
       std::map< std::array<std::string, dims>, std::shared_ptr<EnergyResponse> > _map;
       // Energy
       double minimum_energy;
@@ -85,16 +86,18 @@ namespace frp
           // half binwidth
           double bwidth = _binwidth[i];
           double value  = _binmin[i] - bwidth/2.;
-          int count     = -1;
+          int count     = 0;
+          //printf("Start at: %f\n", _nextComp[i]);
           while( value <= _binmax[i] + bwidth/2. )
           {
-            value = _binmin[i] - bwidth/2. + count*bwidth;
+            value = _binmin[i] - bwidth/2. + (count+1)*bwidth;
             //printf("%i > %0.3f\n", value, i);
             if( _nextComp[i] <= value ) break;
             count += 1;
           }
-          _nextComp[i] = count >= 0 ? _binmin[i] + count*bwidth : _binmax[i];
-          //if( _nextComp[i] > _binmax[i] ) _nextComp[i] = _binmax[i];
+          _nextComp[i] = _binmin[i] + count*bwidth;
+          //_nextComp[i] = count >= 0 ? _binmin[i] + count*bwidth : _binmax[i];
+          if( _nextComp[i] > _binmax[i] ) _nextComp[i] = _binmax[i];
           //printf("New nv: %f\n", _nextComp[i]);
           _nextVector[i] = double_as_string(_nextComp[i]);
         }

@@ -4,10 +4,9 @@
 if(DEFINED ENV{RATROOT})
   include_directories($ENV{RATROOT}/include)
   link_directories($ENV{RATROOT}/lib)
-  add_library(RATEvent SHARED IMPORTED)
 
   add_executable(frprat frprat.cc)
-  target_link_libraries(frprat PUBLIC fitterresponsemap)
+  target_link_libraries(frprat PUBLIC fitterresponsemap RATEvent)
   install(TARGETS frprat RUNTIME DESTINATION bin)
 endif()
 

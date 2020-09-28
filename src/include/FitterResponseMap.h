@@ -42,7 +42,7 @@ namespace frp
     protected:
       std::string target;
       std::string filename;
-      std::unique_ptr< io::CSVReader<7> > csvfile;
+      std::unique_ptr< io::CSVReader<8> > csvfile;
       unsigned coverage;
       unsigned radius;
       std::shared_ptr<TRandom3> rndm;
