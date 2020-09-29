@@ -8,7 +8,7 @@
 
 namespace frp
 {
-  FitterResponseMap::FitterResponseMap(std::string target, unsigned coverage, unsigned radius) :
+  FitterResponseMap::FitterResponseMap(std::string target, double coverage, unsigned radius) :
     target(target), coverage(coverage), radius(radius)
   {
     this->rndm = std::shared_ptr<TRandom3>(new TRandom3());
@@ -38,17 +38,13 @@ namespace frp
       double u, double v, double w, double energy, double time)
   {
     // Calculate smearing here
-    this->position_x  = x;
-    this->position_y  = y;
-    this->position_z  = z;
     this->direction_x = u;
     this->direction_y = v;
     this->direction_z = w;
-    this->energy      = energy;
     this->time        = time;
     // New energy
-    double rho  = sqrt(x*x+y*y);
-    double absz = abs(z);
+    double rho   = sqrt(x*x+y*y);
+    double absz  = abs(z);
     this->energy = energyrc->GetEnergy( energy, energy, rho, absz );
     // New vertex
     std::array<double, 3> fitposition = vertexrc->GetVertex({x, y, z}, energy, rho, absz);

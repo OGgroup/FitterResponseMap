@@ -16,9 +16,31 @@ using namespace std;
 #include <RAT/DS/MC.hh>
 #include <RAT/DS/MCParticle.hh>
 
+class ProgressBar
+{
+  public:
+    unsigned start;
+    unsigned stop;
+    int last_increment;
+    ProgressBar(unsigned start, unsigned stop):
+      start(start), stop(stop) {last_increment=0;}
+    void update(unsigned prog)
+    {
+      double fraction = static_cast<double>(prog-start)/stop;
+      int increment = floor(fraction*100);
+      if( increment != last_increment )
+      {
+        char buffer[256];
+        printf(":: %i\%\r", increment);
+        fflush(stdout);
+        last_increment = increment;
+      }
+    }
+};
+
 int main(int argc, char** argv)
 {
-  frp::FitterResponseMap ff("wbls_3pct", 10, 5000);
+  frp::FitterResponseMap ff("wbls_3pct", 0.20, 6700);
   ff.SetSeed(123);
 
   // Input files
@@ -55,9 +77,12 @@ int main(int argc, char** argv)
   output->Branch("mcke", &mcke);
 
   // Output files
-  for(unsigned ev=0; ev<T->GetEntries(); ev++)
+  unsigned entries = T->GetEntries();
+  ProgressBar pbar(0, entries);
+  
+  for(unsigned evid=0; evid<entries; evid++)
   {
-    T->GetEvent(ev);
+    T->GetEvent(evid);
     // Grab MC Info
     std::vector<double> mcKEnergies;
     auto mc = ds->GetMC();
@@ -92,6 +117,7 @@ int main(int argc, char** argv)
       //
       output->Fill();
     }
+    pbar.update(evid);
   }
   ofile->Write();
   // Read in the test file

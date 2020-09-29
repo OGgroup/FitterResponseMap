@@ -14,7 +14,7 @@ namespace frp
   class FitterResponseMap
   {
     public:
-      FitterResponseMap(std::string, unsigned, unsigned);
+      FitterResponseMap(std::string, double, unsigned);
       ~FitterResponseMap();
 
       void GenerateEvent( double x, double y, double z,
