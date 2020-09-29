@@ -5,7 +5,8 @@ Fitter Response Map
 
 Using an included set of MC, Fitter Response Map applies an additional
 smearing to given event coordinates based on a set of input parameters
-and response map files.
+and response map files. This requires a large set of general MC that is
+then placed into a fake detector to generate rat-like MC.
 
 ## Install
 
@@ -23,6 +24,8 @@ for(auto event : event_list) {
 
 ## Todo
 - [ ] Remove a line from the csv to get an error and then try to repair.
+- [ ] Include a direction smear.
+- [ ] Add PMT events using an internal generator.
 
 ---
 

@@ -1,0 +1,394 @@
+{
+  "wbls_1pct": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  },
+  "wbls_3pct": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  },
+  "wbls_5pct": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  },
+  "water_gd": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  },
+  "wbls_1pct_gd": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  },
+  "wbls_3pct_gd": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  },
+  "wbls_5pct_gd": {
+    "0.1": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.2": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.3": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.4": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.5": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.6": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.7": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.8": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    },
+    "0.9": {
+      "5700": "example.csv",
+      "6700": "example.csv",
+      "7700": "example.csv",
+      "8700": "example.csv"
+    }
+  }
+}

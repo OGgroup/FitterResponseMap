@@ -101,7 +101,7 @@ namespace frp
        << this->radius << ".csv";
     this->filename = ss.str();
     // overwrite for now
-    this->filename = DATA_DIRECTORY "stephane_example.csv";
+    this->filename = DATA_DIRECTORY "response/" "stephane_example.csv";
     printf("Opening: %s\n", this->filename.c_str());
     this->csvfile = std::unique_ptr< io::CSVReader<8> >(new io::CSVReader<8>(filename));
   }
