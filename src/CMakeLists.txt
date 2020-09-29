@@ -2,6 +2,7 @@ add_library(fitterresponsemap OBJECT
   src/FitterResponseMap.cc
   src/EnergyResponse.cc
   src/VertexResponse.cc
+  src/json.cc
   )
 
 target_link_libraries(fitterresponsemap PUBLIC
