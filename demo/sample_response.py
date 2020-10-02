@@ -6,6 +6,7 @@ def main():
     ## Example constants
     ## 50 cm vertex resolution
     vertex_resolution = 50
+    angular_resolution = 1.5
     ## 100 hits / MeV, with 5% resolution
     nhitspermev = 100
     resolution  = 1.05
@@ -23,14 +24,12 @@ def main():
     rho_data    = []
     z_data      = []
     ## Parameters
-    px    = []
-    py    = []
-    pz    = []
-    dx    = []
-    dy    = []
-    dz    = []
-    emean = []
-    eres  = []
+    px     = []
+    py     = []
+    pz     = []
+    dtheta = []
+    emean  = []
+    eres   = []
     for e in energy:
         for r in rho:
             for z in absz :
@@ -40,15 +39,13 @@ def main():
                 px.append(vertex_resolution)
                 py.append(vertex_resolution)
                 pz.append(vertex_resolution)
-                dx.append(vertex_resolution)
-                dy.append(vertex_resolution)
-                dz.append(vertex_resolution)
+                dtheta.append(angular_resolution)
                 emean.append( nhitspermev * e )
                 eres.append( resolution*(nhitspermev*e)**0.5 )
 
     data = np.array([ energy_data, rho_data, z_data,
-                      px, py, pz, dx, dy, dz, emean, eres ], dtype='object').T
-    header = 'energy,rho,z,px,py,pz,dx,dy,dz,emean,eres'
+                      px, py, pz, dtheta, emean, eres ], dtype='object').T
+    header = 'energy,rho,z,px,py,pz,dtheta,emean,eres'
 
     np.savetxt(outputfile, data, delimiter=',', fmt='%s', comments='', header=header)
 

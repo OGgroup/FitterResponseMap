@@ -8,6 +8,7 @@
 #include <VertexResponse.h>
 #include <memory>
 #include <csv.h>
+#include <json.h>
 
 namespace frp
 {
@@ -42,12 +43,14 @@ namespace frp
     protected:
       std::string target;
       std::string filename;
-      std::unique_ptr< io::CSVReader<8> > csvfile;
-      unsigned coverage;
+      std::unique_ptr< io::CSVReader<9> > csvfile;
+      double coverage;
       unsigned radius;
       std::shared_ptr<TRandom3> rndm;
       std::shared_ptr< EnergyResponseCollection<3> > energyrc;
       std::shared_ptr< VertexResponseCollection<3> > vertexrc;
+      std::unique_ptr< json::Reader > csvdict;
+      std::unique_ptr< json::Reader > mcdict;
   };
 } // Namespace frp
 

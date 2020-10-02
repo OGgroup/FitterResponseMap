@@ -1,6 +1,9 @@
 #include <FitterResponseMap.h>
 #include <csv.h>
 #include <sstream>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
 
 #ifndef DATA_DIRECTORY
   #define DATA_DIRECTORY "./"
@@ -23,7 +26,6 @@ namespace frp
     this->energy      = 0;
     this->time        = 0;
     // Load the CSV map
-    //this->energyrc = new EnergyResponseCollection<1>(0, 100.0);
     this->energyrc = std::shared_ptr<EnergyResponseCollection<3>>(
         new EnergyResponseCollection<3>(0, 100.0));
     this->vertexrc = std::shared_ptr<VertexResponseCollection<3>>(
@@ -74,11 +76,11 @@ namespace frp
   void FitterResponseMap::ParseMapCSV()
   {
     this->csvfile->read_header(io::ignore_extra_column, 
-        "energy", "rho", "z", "emean", "eres", "px", "py", "pz");
+        "energy", "rho", "z", "emean", "eres", "px", "py", "pz", "dtheta");
     double e, r, z;
-    double emean, eres, px, py, pz;
+    double emean, eres, px, py, pz, dtheta;
     while( csvfile->read_row( e, r, z, 
-           emean, eres, px, py, pz ) )
+           emean, eres, px, py, pz, dtheta ) )
     {
       std::shared_ptr<EnergyResponse> ersp(
           new EnergyResponse(e, emean, eres ));
@@ -90,16 +92,53 @@ namespace frp
   }
   void FitterResponseMap::SelectFile()
   {
-    std::stringstream ss;
-    ss << "ReconstructionMap_"
-       << this->target << "_"
-       << this->coverage
-       << this->radius << ".csv";
-    this->filename = ss.str();
-    // overwrite for now
-    this->filename = DATA_DIRECTORY "response/" "stephane_example.csv";
+    // Default to pathfitter, but allow selection
+    std::string dict_name = DATA_DIRECTORY "response/pathfitter/response_dictionary.json";
+    std::ifstream file;
+    file.open(dict_name);
+    this->csvdict = std::unique_ptr<json::Reader>( new json::Reader(file) );
+    // Top level
+    json::Value toplevel;
+    std::string csvfilename;
+    bool filenotfound = true;
+    while(csvdict->getValue(toplevel))
+    {
+      std::vector<std::string> keys = toplevel.getMembers();
+      for(auto v : keys)
+      {
+        if( v == this->target )
+        {
+          json::Value coveragedict = toplevel.getMember( v );
+          std::vector<std::string> covkeys = coveragedict.getMembers();
+          for(auto cc : covkeys)
+          {
+            if( stod(cc) == this->coverage )
+            {
+              json::Value pmtdict = coveragedict.getMember(cc);
+              std::vector<std::string> pmtkeys = pmtdict.getMembers();
+              for(auto pp : pmtkeys)
+              {
+                if( stoi(pp) == this->radius )
+                {
+                  csvfilename = pmtdict.getMember(pp).getString();
+                  filenotfound = false;
+                }
+              }
+            }
+          } // Read radii
+        } // Read coverages
+      } // Read targets
+    } // Read dictionary end
+    if( filenotfound )
+    {
+      printf("File for %s, %f, %i not in dictionary\n", target.c_str(), coverage, radius);
+      std::exit(1);
+    }
+    printf("Reading map from %s\n", csvfilename.c_str());
+    //
+    this->filename = DATA_DIRECTORY "response/pathfitter/" + csvfilename;
     printf("Opening: %s\n", this->filename.c_str());
-    this->csvfile = std::unique_ptr< io::CSVReader<8> >(new io::CSVReader<8>(filename));
+    this->csvfile = std::unique_ptr< io::CSVReader<9> >(new io::CSVReader<9>(filename));
   }
   double GetEnergy( double x, double y, double z,
       double u, double v, double w, double energy )
