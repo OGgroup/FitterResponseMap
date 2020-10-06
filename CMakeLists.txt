@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(FitterResponseMap VERSION 1.0.0
+project(FitterResponseMap VERSION 0.0.1
                           DESCRIPTION "Fake Reconstruction from Response Map"
                           LANGUAGES C CXX)
 
