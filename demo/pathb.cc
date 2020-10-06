@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     frp::PMTGenerator pmt(args.radius);
 
     // Output file
-    unique_ptr<TFile> ofile(new TFile("pmtmax.root", "recreate"));
+    unique_ptr<TFile> ofile(new TFile(args.outname.c_str(), "recreate"));
     TTree* T = new TTree("T", "T");
     RAT::DS::Root* ds = new RAT::DS::Root();
     T->Branch("ds", &ds);
@@ -140,7 +140,7 @@ int main(int argc, char** argv)
     T->SetBranchAddress("ds", &ds);
 
     // Output file
-    unique_ptr<TFile> ofile(new TFile("max.root", "recreate"));
+    unique_ptr<TFile> ofile(new TFile(args.outname.c_str(), "recreate"));
     TTree* newT = T->CloneTree(0);
     TTree* newR = runT->CloneTree();
 

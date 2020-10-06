@@ -1,6 +1,7 @@
 add_library(pathbfrp OBJECT
   src/ProgressBar.cc
   src/ArgParsePB.cc
+  src/AstaireDS.cc
   )
 
 target_link_libraries(pathbfrp PUBLIC fitterresponsemap RATEvent)

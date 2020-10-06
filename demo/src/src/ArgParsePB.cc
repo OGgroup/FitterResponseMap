@@ -9,6 +9,7 @@ ArgParsePB::ArgParsePB(int argc, char** argv)
   this->target   = "wbls_3pct";
   this->signal   = "reactorSignal";
   this->filename = "";
+  this->outname  = "output.root";
   std::vector<std::string> arguments(argv+1, argv+argc);
   std::string iv = "";
   for(auto v : arguments)
@@ -21,6 +22,8 @@ ArgParsePB::ArgParsePB(int argc, char** argv)
       this->radius = stoi(v);
     if( iv == "-i" || iv == "--input" )
       this->filename = v;
+    if( iv == "-o" || iv == "--output" )
+      this->outname = v;
     if( iv == "-s" || iv == "--signal" )
       this->signal = v;
     if( v == "--pmt" )

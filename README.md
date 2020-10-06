@@ -15,7 +15,7 @@ linking to the data directory where the montecarlo is stored.
 ```shell
 ln -s $(realpath /path/to/truedaq/) data/montecarlo
 ```
-This will allow the full path to insteall with the system share path.
+This will allow the full path to install with the system share path.
 
 The library can be installed as a system library:
 ```shell
@@ -65,6 +65,38 @@ double mcv    = pmt.direction_y;
 double mcw    = pmt.direction_z;
 double energy = pmt.energy;
 // And smear as above
+```
+
+## Examples
+A few examples exist that show how to produce useful output from the response map.
+### frprat.cc
+Simple program that applies the smearing from a wbls_3pct, 20% coverage, 6700mm pmt
+structure to a given input file, creating the file `output.root`.
+```shell
+frprat input.root
+```
+### pathb.cc
+This runs in two modes depending on if there is an input file or if PMT events are
+requested. The conversion in this case is from ratds to ratds, with the latter
+having additional tree structure and pruning involved.
+```shell
+## For generic events from the truedaq MC
+pathb -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o signal.root
+## For PMT events
+pathb -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o pmt.root
+## To bypass the MC database and just run an input file
+pathb -t wbls_3pct -c 0.20 -r 6700 -i file.root -o output.root
+```
+### astaire.cc
+Similar to the `pathb` script; however, the file output is a flat ntuple, similar
+to the output of fred.
+```shell
+## For generic events from the truedaq MC
+astaire -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o signal.ntuple.root
+## For PMT events
+astaire -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o pmt.ntuple.root
+## To bypass the MC database and just run an input file
+astaire -t wbls_3pct -c 0.20 -r 6700 -i file.root -o output.ntuple.root
 ```
 
 ---
