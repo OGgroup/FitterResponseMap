@@ -10,7 +10,12 @@ then placed into a fake detector to generate rat-like MC.
 
 ## Install
 A simple `Makefile` exists that installs the executables and the library
-into a directory within the source `./local`.
+into a directory within the source `./local`. Begin by downloading and
+linking to the data directory where the montecarlo is stored.
+```shell
+ln -s $(realpath /path/to/truedaq/) data/montecarlo
+```
+This will allow the full path to insteall with the system share path.
 
 The library can be installed as a system library:
 ```shell
@@ -22,6 +27,8 @@ or into the users local install
 cmake . -Bbuild -DCMAKE_INSTALL_PREFIX=~/.local
 cmake --build build --target install
 ```
+or into any other path. An example would be to link to local in the
+local directory from wmutils.
 
 ## Usage
 The core utilities do not need to know about the underlying datastructure,

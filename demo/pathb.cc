@@ -7,6 +7,9 @@
 #include <iostream>
 #include <FitterResponseMap.h>
 #include <PMTGenerator.h>
+#include <MCLookup.h>
+#include <ProgressBar.h>
+#include <ArgParsePB.h>
 #include <memory>
 #include <array>
 #include <string>
@@ -23,78 +26,6 @@ using namespace std;
 #include <RAT/DS/MC.hh>
 #include <RAT/DS/MCParticle.hh>
 
-class ProgressBar
-{
-  public:
-    unsigned start;
-    unsigned stop;
-    int last_increment;
-    ProgressBar(unsigned start, unsigned stop):
-      start(start), stop(stop) {last_increment=0;}
-    void update(unsigned prog)
-    {
-      double fraction = static_cast<double>(prog-start)/stop;
-      int increment = floor(fraction*100);
-      if( increment != last_increment )
-      {
-        char buffer[256];
-        printf(":: %i\%\r", increment);
-        fflush(stdout);
-        last_increment = increment;
-      }
-    }
-};
-
-class ArgParse
-{
-  public:
-    string filename;
-    string outname;
-    string target;
-    double coverage;
-    unsigned radius;
-    unsigned pmtcount;
-    bool genpmts;
-    ArgParse(int argc, char** argv)
-    {
-      // defaults
-      this->genpmts  = false;
-      this->coverage = 0.20;
-      this->radius   = 6700;
-      this->target   = "wbls_3pct";
-      this->filename = "";
-      vector<string> arguments(argv+1, argv+argc);
-      string iv = "";
-      for(auto v : arguments)
-      {
-        if( iv == "-t" || iv == "--target" )
-          this->target = v;
-        if( iv == "-c" || iv == "--coverage" )
-          this->coverage = stod(v);
-        if( iv == "-r" || iv == "--radius" )
-          this->radius = stoi(v);
-        if( iv == "-i" || iv == "--input" )
-          this->filename = v;
-        if( v == "--pmt" )
-          this->genpmts = true;
-        if( iv == "--pmt" )
-          this->pmtcount = stoi(v);
-        iv = v;
-      }
-      check_args();
-    }
-  private:
-    void check_args()
-    {
-      if( (this->filename == "") && !this->genpmts )
-      {
-        printf("Either specify an input file with -i or generate "
-            "pmt events with --pmt. Exiting.\n");
-        exit(1);
-      }
-    }
-};
-
 bool boundary_check(TVector3 v, double r)
 {
   double rho = sqrt(v.X()*v.X() + v.Y()*v.Y());
@@ -106,12 +37,13 @@ bool boundary_check(TVector3 v, double r)
 
 int main(int argc, char** argv)
 {
-  ArgParse args(argc, argv);
+  ArgParsePB args(argc, argv);
   // Load the correct configuration csv
   string target   = args.target;
   double coverage = args.coverage;
   unsigned radius = args.radius;
   frp::FitterResponseMap ff(target, coverage, radius);
+
 
   // arbitrary at the moment
   double mc_max_rho   = radius - 150;
@@ -188,8 +120,20 @@ int main(int argc, char** argv)
   }
   else
   {
+    std::string filename;
+    if( args.filename == "" )
+    {
+      frp::MCLookup lookup(target, args.signal);
+      filename = lookup.getFilename();
+    }
+    else
+    {
+      filename = args.filename;
+    }
+    printf("Filename: %s\n", filename.c_str());
+
     // Input files
-    unique_ptr<TFile> tfile(new TFile(args.filename.c_str()));
+    unique_ptr<TFile> tfile(new TFile(filename.c_str()));
     TTree* T          = (TTree*)tfile->Get("T");
     TTree* runT       = (TTree*)tfile->Get("runT");
     RAT::DS::Root* ds = new RAT::DS::Root();

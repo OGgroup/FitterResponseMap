@@ -3,6 +3,7 @@ add_library(fitterresponsemap OBJECT
   src/EnergyResponse.cc
   src/VertexResponse.cc
   src/PMTGenerator.cc
+  src/MCLookup.cc
   src/json.cc
   )
 
