@@ -119,7 +119,6 @@ int main(int argc, char** argv)
 
   if( args.genpmts )
   {
-    printf("Hellooooo\n");
     unsigned entries = args.pmtcount;
     frp::PMTGenerator pmt(args.radius);
 

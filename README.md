@@ -9,11 +9,24 @@ and response map files. This requires a large set of general MC that is
 then placed into a fake detector to generate rat-like MC.
 
 ## Install
+A simple `Makefile` exists that installs the executables and the library
+into a directory within the source `./local`.
+
+The library can be installed as a system library:
+```shell
+cmake . -Bbuild
+cmake --build build --target install
+```
+or into the users local install
+```shell
+cmake . -Bbuild -DCMAKE_INSTALL_PREFIX=~/.local
+cmake --build build --target install
+```
 
 ## Usage
 The core utilities do not need to know about the underlying datastructure,
 that is for the user to provide.
-```
+```c++
 #include <FitterResponseMap.h>
 #include <PMTGenerator.h>
 // Define a detector
@@ -46,13 +59,6 @@ double mcw    = pmt.direction_z;
 double energy = pmt.energy;
 // And smear as above
 ```
-
-## Examples
-
-## Todo
-- [ ] Remove a line from the csv to get an error and then try to repair.
-- [ ] Include a direction smear.
-- [ ] Add PMT events using an internal generator.
 
 ---
 
