@@ -14,10 +14,37 @@ then placed into a fake detector to generate rat-like MC.
 The core utilities do not need to know about the underlying datastructure,
 that is for the user to provide.
 ```
-FitterResponseMap frp(detector_configuration);
+#include <FitterResponseMap.h>
+#include <PMTGenerator.h>
+// Define a detector
+std::string target = "wbls_3%";
+double coverage = 0.20;
+unsigned radius = 5700;
+// Read the detector response
+FitterResponseMap frp(target, coverage, radius);
+// Apply to events / input files
 for(auto event : event_list) {
-  frp.ApplyResponse( event.x, event.y, event.z, event.energy );
+  ff.GenerateEvent( mcx, mcy, mcz, mcu, mcw, mcv, energy, time );
+  // Retrieve the fitted information
+  double x = ff.position_x;
+  double y = ff.position_y;
+  double z = ff.position_z;
+  double u = ff.direction_x;
+  double v = ff.direction_y;
+  double w = ff.direction_z;
+  double energy = ff.energy;
 }
+// Or use the pmt generator
+frp::PMTGenerator pmt(radius);
+pmt.GenerateNewEvent();
+double mcx    = pmt.position_x;
+double mcy    = pmt.position_y;
+double mcz    = pmt.position_z;
+double mcu    = pmt.direction_x;
+double mcv    = pmt.direction_y;
+double mcw    = pmt.direction_z;
+double energy = pmt.energy;
+// And smear as above
 ```
 
 ## Examples
