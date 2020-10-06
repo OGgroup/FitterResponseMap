@@ -8,16 +8,10 @@ if(DEFINED ENV{RATROOT})
   add_subdirectory(src)
 
   add_executable(frprat frprat.cc)
-  target_link_libraries(frprat PUBLIC fitterresponsemap RATEvent)
+  target_link_libraries(frprat PUBLIC fitterresponsemap RATEvent pathbfrp)
   install(TARGETS frprat RUNTIME DESTINATION bin)
 
   add_executable(pathb pathb.cc)
   target_link_libraries(pathb PUBLIC fitterresponsemap RATEvent pathbfrp)
   install(TARGETS pathb RUNTIME DESTINATION bin)
 endif()
-
-add_executable(frpdemo frpdemo.cc)
-target_link_libraries(frpdemo PUBLIC fitterresponsemap)
-
-install(TARGETS frpdemo
-  RUNTIME DESTINATION bin)

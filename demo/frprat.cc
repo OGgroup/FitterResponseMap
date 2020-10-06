@@ -1,5 +1,6 @@
 #include <iostream>
 #include <FitterResponseMap.h>
+#include <ProgressBar.h>
 #include <memory>
 #include <array>
 #include <string>
@@ -16,28 +17,6 @@ using namespace std;
 #include <RAT/DS/MC.hh>
 #include <RAT/DS/MCParticle.hh>
 
-class ProgressBar
-{
-  public:
-    unsigned start;
-    unsigned stop;
-    int last_increment;
-    ProgressBar(unsigned start, unsigned stop):
-      start(start), stop(stop) {last_increment=0;}
-    void update(unsigned prog)
-    {
-      double fraction = static_cast<double>(prog-start)/stop;
-      int increment = floor(fraction*100);
-      if( increment != last_increment )
-      {
-        char buffer[256];
-        printf(":: %i\%\r", increment);
-        fflush(stdout);
-        last_increment = increment;
-      }
-    }
-};
-
 int main(int argc, char** argv)
 {
   frp::FitterResponseMap ff("wbls_3pct", 0.20, 6700);
@@ -50,7 +29,7 @@ int main(int argc, char** argv)
   T->SetBranchAddress("ds", &ds);
 
   // Output file
-  unique_ptr<TFile> ofile(new TFile("max.root", "recreate"));
+  unique_ptr<TFile> ofile(new TFile("output.root", "recreate"));
   unique_ptr<TTree> output(new TTree("output", "output"));
   // I hate ttrees
   double x, y, z, u, v, w, t, energy;
