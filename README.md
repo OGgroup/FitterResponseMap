@@ -82,8 +82,8 @@ having additional tree structure and pruning involved.
 ```shell
 ## For generic events from the truedaq MC
 pathb -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o signal.root
-## For PMT events
-pathb -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o pmt.root
+## For 1_000_000 PMT events
+pathb -t wbls_3pct -c 0.20 -r 6700 --pmt 1000000 -o pmt.root
 ## To bypass the MC database and just run an input file
 pathb -t wbls_3pct -c 0.20 -r 6700 -i file.root -o output.root
 ```
@@ -93,8 +93,8 @@ to the output of fred.
 ```shell
 ## For generic events from the truedaq MC
 astaire -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o signal.ntuple.root
-## For PMT events
-astaire -t wbls_3pct -c 0.20 -r 6700 -s "reactorSignal" -o pmt.ntuple.root
+## For 1_000_000 PMT events
+astaire -t wbls_3pct -c 0.20 -r 6700 --pmt 1000000 -o pmt.ntuple.root
 ## To bypass the MC database and just run an input file
 astaire -t wbls_3pct -c 0.20 -r 6700 -i file.root -o output.ntuple.root
 ```
