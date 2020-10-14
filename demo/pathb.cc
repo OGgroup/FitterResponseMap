@@ -94,7 +94,7 @@ int main(int argc, char** argv)
       ff.GenerateEvent(mcx, mcy, mcz, 1.0, 0.0, 0.0, pmt.energy, 1.0);
       auto rposition = TVector3(ff.position_x, ff.position_y, ff.position_z);
       pf->SetPosition( rposition );
-      ev->SetTotalCharge( pmt.energy );
+      ev->SetTotalCharge( ff.energy );
 
       // Pruning boundary
       if( !boundary_check(rposition, fiducial_rho) ) continue;
@@ -113,7 +113,7 @@ int main(int argc, char** argv)
 
     // Header tree
     TTree* header = new TTree("header", "header");
-    double efficiency = static_cast<double>(entries)/true_entries;
+    double efficiency = static_cast<double>(keep_entries)/entries;
     header->Branch("efficiency", &efficiency);
     header->Fill();
     ofile->Write(0, TObject::kOverwrite);
