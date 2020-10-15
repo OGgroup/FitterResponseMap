@@ -131,7 +131,7 @@ namespace frp
     } // Read dictionary end
     if( filenotfound )
     {
-      printf("File for %s, %f, %i not in dictionary\n", target.c_str(), coverage, radius);
+      printf("CSV File for %s, %f, %i not in dictionary\n", target.c_str(), coverage, radius);
       std::exit(1);
     }
     printf("Reading map from %s\n", csvfilename.c_str());

@@ -7,7 +7,7 @@ import re
 data = {}
 targets = ["wbls_1pct", "wbls_3pct", "wbls_1pct_gd", "wbls_3pct_gd"]
 coverages = ["10", "20", "40", "80"]
-radii = ["4700", "5700", "6700", "7700", "8800"]
+radii = ["4700", "5700", "6700", "7700", "8700"]
 
 for t in targets:
   data[t] = {}

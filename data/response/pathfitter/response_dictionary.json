@@ -5,28 +5,28 @@
       "5700": "wbls_1pct_WM_0820_5700mm_10pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_10pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_10pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_10pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_10pct.csv"
     },
     "0.20": {
       "4700": "wbls_1pct_WM_0820_4700mm_20pct.csv",
       "5700": "wbls_1pct_WM_0820_5700mm_20pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_20pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_20pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_20pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_20pct.csv"
     },
     "0.40": {
       "4700": "wbls_1pct_WM_0820_4700mm_40pct.csv",
       "5700": "wbls_1pct_WM_0820_5700mm_40pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_40pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_40pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_40pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_40pct.csv"
     },
     "0.80": {
       "4700": "wbls_1pct_WM_0820_4700mm_80pct.csv",
       "5700": "wbls_1pct_WM_0820_5700mm_80pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_80pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_80pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_80pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_80pct.csv"
     }
   },
   "wbls_3pct": {
@@ -35,28 +35,28 @@
       "5700": "wbls_3pct_WM_0820_5700mm_10pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_10pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_10pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_10pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_10pct.csv"
     },
     "0.20": {
       "4700": "wbls_3pct_WM_0820_4700mm_20pct.csv",
       "5700": "wbls_3pct_WM_0820_5700mm_20pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_20pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_20pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_20pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_20pct.csv"
     },
     "0.40": {
       "4700": "wbls_3pct_WM_0820_4700mm_40pct.csv",
       "5700": "wbls_3pct_WM_0820_5700mm_40pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_40pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_40pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_40pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_40pct.csv"
     },
     "0.80": {
       "4700": "wbls_3pct_WM_0820_4700mm_80pct.csv",
       "5700": "wbls_3pct_WM_0820_5700mm_80pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_80pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_80pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_80pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_80pct.csv"
     }
   },
   "wbls_1pct_gd": {
@@ -65,28 +65,28 @@
       "5700": "wbls_1pct_WM_0820_5700mm_10pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_10pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_10pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_10pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_10pct.csv"
     },
     "0.20": {
       "4700": "wbls_1pct_WM_0820_4700mm_20pct.csv",
       "5700": "wbls_1pct_WM_0820_5700mm_20pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_20pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_20pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_20pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_20pct.csv"
     },
     "0.40": {
       "4700": "wbls_1pct_WM_0820_4700mm_40pct.csv",
       "5700": "wbls_1pct_WM_0820_5700mm_40pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_40pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_40pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_40pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_40pct.csv"
     },
     "0.80": {
       "4700": "wbls_1pct_WM_0820_4700mm_80pct.csv",
       "5700": "wbls_1pct_WM_0820_5700mm_80pct.csv",
       "6700": "wbls_1pct_WM_0820_6700mm_80pct.csv",
       "7700": "wbls_1pct_WM_0820_7700mm_80pct.csv",
-      "8800": "wbls_1pct_WM_0820_8800mm_80pct.csv"
+      "8700": "wbls_1pct_WM_0820_8700mm_80pct.csv"
     }
   },
   "wbls_3pct_gd": {
@@ -95,28 +95,28 @@
       "5700": "wbls_3pct_WM_0820_5700mm_10pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_10pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_10pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_10pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_10pct.csv"
     },
     "0.20": {
       "4700": "wbls_3pct_WM_0820_4700mm_20pct.csv",
       "5700": "wbls_3pct_WM_0820_5700mm_20pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_20pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_20pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_20pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_20pct.csv"
     },
     "0.40": {
       "4700": "wbls_3pct_WM_0820_4700mm_40pct.csv",
       "5700": "wbls_3pct_WM_0820_5700mm_40pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_40pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_40pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_40pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_40pct.csv"
     },
     "0.80": {
       "4700": "wbls_3pct_WM_0820_4700mm_80pct.csv",
       "5700": "wbls_3pct_WM_0820_5700mm_80pct.csv",
       "6700": "wbls_3pct_WM_0820_6700mm_80pct.csv",
       "7700": "wbls_3pct_WM_0820_7700mm_80pct.csv",
-      "8800": "wbls_3pct_WM_0820_8800mm_80pct.csv"
+      "8700": "wbls_3pct_WM_0820_8700mm_80pct.csv"
     }
   }
 }

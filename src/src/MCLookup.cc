@@ -49,7 +49,7 @@ namespace frp
     }
     if( filenotfound )
     {
-      printf("File for %s, %s not in dictionary\n", target.c_str(), component.c_str() );
+      printf("MC File for %s, %s not in dictionary\n", target.c_str(), component.c_str() );
       std::exit(1);
     }
     printf("Reading map from %s\n", rootfilename.c_str());
