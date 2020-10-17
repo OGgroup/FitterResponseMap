@@ -29,7 +29,9 @@ class AstaireDS
     int veto_hit = 0;
     int veto_plus_dr_hit = 0;
     double pe = 0;
-    double n9 = 0;
+    int n9   = 0;
+    int n400 = 0;
+    int n100 = 0;
     double good_pos = 0;
     double good_dir = 0;
     double x = 0;

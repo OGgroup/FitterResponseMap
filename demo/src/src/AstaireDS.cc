@@ -17,6 +17,8 @@ AstaireDS::AstaireDS(std::string name)
   data->Branch("veto_plus_dr_hit", &veto_plus_dr_hit);
   data->Branch("pe", &pe);
   data->Branch("n9", &n9);
+  data->Branch("n100", &n100);
+  data->Branch("n400", &n400);
   data->Branch("good_pos", &good_pos);
   data->Branch("good_dir", &good_dir);
   data->Branch("x", &x);

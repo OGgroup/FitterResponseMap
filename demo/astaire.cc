@@ -72,7 +72,11 @@ int main(int argc, char** argv)
       fred.x         = ff.position_x;
       fred.y         = ff.position_y;
       fred.z         = ff.position_z;
-      fred.inner_hit = ff.energy;
+      // Energy estimates
+      fred.inner_hit   = round(ff.energy);
+      fred.n9          = round(ff.energy);
+      fred.n100        = round(ff.energy);
+      fred.n400        = round(ff.energy);
       fred.gtid      = i;
       // All good
       fred.FillData();
