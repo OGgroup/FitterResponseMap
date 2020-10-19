@@ -10,6 +10,7 @@ ArgParsePB::ArgParsePB(int argc, char** argv)
   this->signal   = "reactorSignal";
   this->filename = "";
   this->outname  = "output.root";
+  this->prune    = 0;
   std::vector<std::string> arguments(argv+1, argv+argc);
   std::string iv = "";
   for(auto v : arguments)
@@ -20,6 +21,8 @@ ArgParsePB::ArgParsePB(int argc, char** argv)
       this->coverage = stod(v);
     if( iv == "-r" || iv == "--radius" )
       this->radius = stoi(v);
+    if( iv == "-p" || iv == "--prune" )
+      this->prune = stod(v);
     if( iv == "-i" || iv == "--input" )
       this->filename = v;
     if( iv == "-o" || iv == "--output" )
@@ -33,4 +36,6 @@ ArgParsePB::ArgParsePB(int argc, char** argv)
     iv = v;
   }
   //check_args();
+  if( this->prune == 0 )
+    this->prune = this->radius - 700;
 }

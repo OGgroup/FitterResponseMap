@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 
   // arbitrary at the moment
   double mc_max_rho   = radius - 150;
-  double fiducial_rho = radius - 700;
+  double fiducial_rho = args.prune;
 
   if( args.genpmts )
   {
@@ -184,6 +184,7 @@ int main(int argc, char** argv)
         // Fill
         pf->SetPosition(TVector3(ff.position_x, ff.position_y, ff.position_z));
         ev->SetTotalCharge( ff.energy );
+        ev->SetDeltaT( true_energy );
         // position database
         if( sev == 0 )
         {

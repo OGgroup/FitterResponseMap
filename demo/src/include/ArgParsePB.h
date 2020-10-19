@@ -14,6 +14,7 @@ class ArgParsePB
     double coverage;
     unsigned radius;
     unsigned pmtcount;
+    double prune;
     bool genpmts;
     ArgParsePB(int argc, char** argv);
   private:
