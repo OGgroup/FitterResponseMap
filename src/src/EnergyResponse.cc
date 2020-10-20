@@ -12,7 +12,6 @@ namespace frp
     resolution     = resolution;
     this->function = std::unique_ptr<TF1> (
       new TF1("ERFunction", "1/sqrt(2*pi*[0]^2)*exp(-(x-[1])^2/2/[0]^2)", minimum_energy, maximum_energy) );
-    printf("%f -- %f\n", resolution, mean_hits);
     this->function->SetParameter(0, resolution);
     this->function->SetParameter(1, mean_hits);
   }
