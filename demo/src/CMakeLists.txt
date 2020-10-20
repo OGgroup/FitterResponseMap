@@ -4,7 +4,7 @@ add_library(pathbfrp OBJECT
   src/AstaireDS.cc
   )
 
-target_link_libraries(pathbfrp PUBLIC fitterresponsemap RATEvent)
+target_link_libraries(pathbfrp PUBLIC frp RATEvent)
 
 target_include_directories(pathbfrp PUBLIC 
   $<BUILD_INTERFACE:${FRP_INCLUDE_DIR}>
