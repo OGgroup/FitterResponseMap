@@ -19,7 +19,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  frp::FitterResponseMap ff("wbls_3pct", 0.20, 6700);
+  frp::FitterResponseMap ff("wbls_3pct", 0.20, 6700, false);
   ff.SetSeed(123);
 
   // Input files

@@ -24,6 +24,8 @@ using namespace std;
 // Rat libraries
 #include <RAT/DS/Root.hh>
 #include <RAT/DS/MC.hh>
+#include <RAT/DS/PMT.hh>
+#include <RAT/DS/EV.hh>
 #include <RAT/DS/MCParticle.hh>
 
 bool boundary_check(TVector3 v, double r)
@@ -42,7 +44,7 @@ int main(int argc, char** argv)
   string target   = args.target;
   double coverage = args.coverage;
   unsigned radius = args.radius;
-  frp::FitterResponseMap ff(target, coverage, radius);
+  frp::FitterResponseMap ff(target, coverage, radius, false);
   // Output file
   AstaireDS fred(args.outname);
 
@@ -111,6 +113,8 @@ int main(int argc, char** argv)
 
     int true_entries = 0; // Pass MC boundary cuts
     int trigger_count = 0;
+    const double biasgd = 0.30;
+    const double biash = 0.15;
 
     unsigned entries = T->GetEntries();
     ProgressBar pbar(0, entries);
@@ -129,9 +133,26 @@ int main(int argc, char** argv)
         auto pf            = ev->GetPathFit();
         auto position      = pf->GetPosition();
         double true_energy = ev->GetTotalCharge();
+        auto ctype         = pf->GetTime0();
         // Generate event
+        double comp_energy = 0;
+        for(unsigned npmt=0; npmt < ev->GetPMTCount(); npmt++)
+        {
+          auto pmt = ev->GetPMT(npmt);
+          auto pdg = pmt->GetID();
+          double composite_energy = pmt->GetCharge() - biash;
+          if( (ctype == 1000641560) || (ctype == 1000641580) )
+            composite_energy = pmt->GetCharge() - biasgd;
+          ff.GenerateEvent( position.X(), position.Y(), position.Z(), 1.0,
+              0.0, 0.0, composite_energy, 1.0 );
+          if( composite_energy > 0.0 )
+            comp_energy += ff.energy;
+        }
         ff.GenerateEvent( position.X(), position.Y(), position.Z(), 1.0,
             0.0, 0.0, true_energy, 1.0 );
+        // Fill
+        if( (ctype == 1000641560) || (ctype == 1000641580) || (ctype == 1000010020) )
+          ff.energy = comp_energy;
         // Fill
         fred.mcid = true_entries;
         fred.mcx = position.X();
@@ -142,6 +163,9 @@ int main(int argc, char** argv)
         fred.y = ff.position_y;
         fred.z = ff.position_z;
         fred.inner_hit = ff.energy;
+        fred.n9          = round(ff.energy);
+        fred.n100        = round(ff.energy);
+        fred.n400        = round(ff.energy);
         fred.gtid = trigger_count;
         // Done
         trigger_count++;

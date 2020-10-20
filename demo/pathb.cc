@@ -25,6 +25,8 @@ using namespace std;
 #include <RAT/DS/Root.hh>
 #include <RAT/DS/MC.hh>
 #include <RAT/DS/MCParticle.hh>
+#include <RAT/DS/EV.hh>
+#include <RAT/DS/PMT.hh>
 
 bool boundary_check(TVector3 v, double r)
 {
@@ -42,7 +44,7 @@ int main(int argc, char** argv)
   string target   = args.target;
   double coverage = args.coverage;
   unsigned radius = args.radius;
-  frp::FitterResponseMap ff(target, coverage, radius);
+  frp::FitterResponseMap ff(target, coverage, radius, false);
 
 
   // arbitrary at the moment
@@ -153,6 +155,8 @@ int main(int argc, char** argv)
 
     int true_entries = 0; // Pass MC boundary cuts
     int keep_entries = 0; // Pass Recon boundary cuts
+    const double biasgd = 0.30;
+    const double biash = 0.15;
 
     unsigned entries = T->GetEntries();
     ProgressBar pbar(0, entries);
@@ -176,15 +180,37 @@ int main(int argc, char** argv)
         auto pf            = ev->GetPathFit();
         auto position      = pf->GetPosition();
         double true_energy = ev->GetTotalCharge();
+        auto ctype         = pf->GetTime0();
         // Pruning
         if( boundary_check(position, fiducial_rho) ) pass_fv = true;
         // Generate event
+        double comp_energy = 0;
+        for(unsigned npmt=0; npmt < ev->GetPMTCount(); npmt++)
+        {
+          auto pmt = ev->GetPMT(npmt);
+          auto pdg = pmt->GetID();
+          double composite_energy = pmt->GetCharge() - biash;
+          if( (ctype == 1000641560) || (ctype == 1000641580) )
+            composite_energy = pmt->GetCharge() - biasgd;
+          ff.GenerateEvent( position.X(), position.Y(), position.Z(), 1.0,
+              0.0, 0.0, composite_energy, 1.0 );
+          if( composite_energy > 0.0 )
+            comp_energy += ff.energy;
+        }
         ff.GenerateEvent( position.X(), position.Y(), position.Z(), 1.0,
             0.0, 0.0, true_energy, 1.0 );
         // Fill
         pf->SetPosition(TVector3(ff.position_x, ff.position_y, ff.position_z));
-        ev->SetTotalCharge( ff.energy );
-        ev->SetDeltaT( true_energy );
+        //printf("%0.13f\n", ctype);
+        if( (ctype == 1000641560) || (ctype == 1000641580) || (ctype == 1000010020) )
+        {
+          ev->SetTotalCharge(comp_energy);
+        }
+        else
+        {
+          ev->SetTotalCharge(ff.energy);
+        }
+        //ev->SetDeltaT( true_energy );
         // position database
         if( sev == 0 )
         {
