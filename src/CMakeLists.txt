@@ -1,4 +1,4 @@
-add_library(fitterresponsemap OBJECT
+add_library(fitterresponsemap SHARED 
   src/FitterResponseMap.cc
   src/EnergyResponse.cc
   src/VertexResponse.cc
