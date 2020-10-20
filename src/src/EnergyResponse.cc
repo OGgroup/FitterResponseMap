@@ -20,12 +20,12 @@ namespace frp
   {
     // We choose to assume that the nhit response is locally linear.
     this->function->SetParameter(1, energy*conversion);
-    double testenergy = round(this->function->GetRandom());
+    double testenergy = this->function->GetRandom();
     testenergy = testenergy > 0 ? testenergy : 0;
     if( convert )
       return testenergy / conversion;
     else
-      return testenergy;
+      return round(testenergy);
     return testenergy;
   }
 }
