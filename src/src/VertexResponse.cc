@@ -22,6 +22,10 @@ namespace frp
 
   std::array<double,3> VertexResponse::GetRandomVertex(std::array<double, 3> vtx)
   {
+    // Check for out of bounds
+    if( (resolution_x <= 0.001) || (resolution_y <= 0.001) || (resolution_z <= 0.001) )
+      return std::array<double,3>({ -99999, -99999, -99999 });
+
     std::array<double,3> newvtx({ this->function_x->GetRandom()+vtx[0],
                                   this->function_y->GetRandom()+vtx[1],
                                   this->function_z->GetRandom()+vtx[2] });

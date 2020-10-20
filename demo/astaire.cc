@@ -37,6 +37,8 @@ bool boundary_check(TVector3 v, double r)
   return false;
 }
 
+double dwall( TVector3 v, double wall );
+
 int main(int argc, char** argv)
 {
   ArgParsePB args(argc, argv);
@@ -71,9 +73,10 @@ int main(int argc, char** argv)
       fred.mcid      = i;
       // EV
       ff.GenerateEvent(fred.mcx, fred.mcy, fred.mcz, 1.0, 0.0, 0.0, pmt.energy, 1.0);
-      fred.x         = ff.position_x;
-      fred.y         = ff.position_y;
-      fred.z         = ff.position_z;
+      fred.x          = ff.position_x;
+      fred.y          = ff.position_y;
+      fred.z          = ff.position_z;
+      fred.closestPMT = dwall( TVector3(ff.position_x, ff.position_y, ff.position_z), radius );
       // Energy estimates
       fred.inner_hit   = round(ff.energy);
       fred.n9          = round(ff.energy);
@@ -154,19 +157,20 @@ int main(int argc, char** argv)
         if( (ctype == 1000641560) || (ctype == 1000641580) || (ctype == 1000010020) )
           ff.energy = comp_energy;
         // Fill
-        fred.mcid = true_entries;
-        fred.mcx = position.X();
-        fred.mcy = position.Y();
-        fred.mcz = position.Z();
-        fred.mc_energy = true_energy;
-        fred.x = ff.position_x;
-        fred.y = ff.position_y;
-        fred.z = ff.position_z;
-        fred.inner_hit = ff.energy;
+        fred.mcid        = true_entries;
+        fred.mcx         = position.X();
+        fred.mcy         = position.Y();
+        fred.mcz         = position.Z();
+        fred.mc_energy   = true_energy;
+        fred.x           = ff.position_x;
+        fred.y           = ff.position_y;
+        fred.z           = ff.position_z;
+        fred.closestPMT  = dwall( TVector3(ff.position_x, ff.position_y, ff.position_z), radius );
+        fred.inner_hit   = round(ff.energy);
         fred.n9          = round(ff.energy);
         fred.n100        = round(ff.energy);
         fred.n400        = round(ff.energy);
-        fred.gtid = trigger_count;
+        fred.gtid        = trigger_count;
         // Done
         trigger_count++;
         fred.FillData();
@@ -178,4 +182,14 @@ int main(int argc, char** argv)
     fred.FillRunSummary();
   }
   fred.Write();
+}
+
+double dwall( TVector3 v, double wall )
+{
+  double rho   = sqrt( v.X()*v.X() + v.Y()*v.Y() );
+  double z     = v.Z();
+  double dcap  = wall - abs(z);
+  double dside = wall - rho;
+
+  return min(dcap, dside);
 }
