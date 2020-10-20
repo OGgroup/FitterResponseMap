@@ -11,8 +11,8 @@
 
 namespace frp
 {
-  FitterResponseMap::FitterResponseMap(std::string target, double coverage, unsigned radius) :
-    target(target), coverage(coverage), radius(radius)
+  FitterResponseMap::FitterResponseMap(std::string target, double coverage, unsigned radius, bool converted) :
+    target(target), coverage(coverage), radius(radius), converted(converted)
   {
     this->rndm = std::shared_ptr<TRandom3>(new TRandom3());
     rndm->SetSeed();
@@ -27,7 +27,7 @@ namespace frp
     this->time        = 0;
     // Load the CSV map
     this->energyrc = std::shared_ptr<EnergyResponseCollection<3>>(
-        new EnergyResponseCollection<3>(0, 100.0));
+        new EnergyResponseCollection<3>(0, 100.0, converted));
     this->vertexrc = std::shared_ptr<VertexResponseCollection<3>>(
         new VertexResponseCollection<3>());
     //this->directionrc = new DirectionResponseCollection<1>(-1, 1); << or something like that
@@ -45,9 +45,9 @@ namespace frp
     this->direction_z = w;
     this->time        = time;
     // New energy
-    double rho   = sqrt(x*x+y*y);
-    double absz  = abs(z);
-    this->energy = energyrc->GetEnergy( energy, energy, rho, absz );
+    double rho       = sqrt(x*x+y*y);
+    double absz      = abs(z);
+    this->energy     = energyrc->GetEnergy( energy, energy, rho, absz );
     // New vertex
     std::array<double, 3> fitposition = vertexrc->GetVertex({x, y, z}, energy, rho, absz);
     this->position_x = fitposition[0];

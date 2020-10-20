@@ -15,7 +15,9 @@ namespace frp
   class FitterResponseMap
   {
     public:
-      FitterResponseMap(std::string, double, unsigned);
+      FitterResponseMap(std::string, double, unsigned, bool);
+      FitterResponseMap(std::string s, double d, unsigned u) :
+        FitterResponseMap(s, d, u, false) {}
       ~FitterResponseMap();
 
       void GenerateEvent( double x, double y, double z,
@@ -30,6 +32,7 @@ namespace frp
       double position_y;
       double position_z;
       double energy;
+      double realenergy;
       double time;
 
       void SetSeed(unsigned _seed){
@@ -46,6 +49,7 @@ namespace frp
       std::unique_ptr< io::CSVReader<9> > csvfile;
       double coverage;
       unsigned radius;
+      bool converted;
       std::shared_ptr<TRandom3> rndm;
       std::shared_ptr< EnergyResponseCollection<3> > energyrc;
       std::shared_ptr< VertexResponseCollection<3> > vertexrc;

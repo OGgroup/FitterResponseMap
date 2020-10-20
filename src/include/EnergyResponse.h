@@ -25,7 +25,7 @@ namespace frp
       EnergyResponse(double, double, double);
       ~EnergyResponse() {}
 
-      double GetRandomEnergy(double);
+      double GetRandomEnergy(double, bool);
   };
   // Energy Response Collection
   template<unsigned dims>
@@ -36,6 +36,7 @@ namespace frp
       // Energy
       double minimum_energy;
       double maximum_energy;
+      bool converted;
       // Temporary container
       std::array<std::string, dims> _nextVector;
       std::array<double, dims> _nextComp;
@@ -43,8 +44,8 @@ namespace frp
       std::array<double, dims> _binmax;
       std::array<double, dims> _binwidth;
     public:
-      EnergyResponseCollection(double minE, double maxE) :
-        minimum_energy(minE), maximum_energy(maxE) {}
+      EnergyResponseCollection(double minE, double maxE, bool conv) :
+        minimum_energy(minE), maximum_energy(maxE), converted(conv) {}
 
       std::string double_as_string(double x)
       {
@@ -101,7 +102,7 @@ namespace frp
           //printf("New nv: %f\n", _nextComp[i]);
           _nextVector[i] = double_as_string(_nextComp[i]);
         }
-        return (_map.at(_nextVector))->GetRandomEnergy(energy);
+        return (_map.at(_nextVector))->GetRandomEnergy(energy, converted);
       }
 
       void updateVariables()
